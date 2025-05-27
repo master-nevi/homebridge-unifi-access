@@ -590,6 +590,11 @@ export class AccessHub extends AccessDevice {
         break;
 
       default:
+        // Log any other events we receive for debugging purposes
+        this.log.debug("Unhandled event: %s", packet.event);
+        if(packet.data) {
+          this.log.debug("Event data: %s", JSON.stringify(packet.data));
+        }
 
         break;
     }
