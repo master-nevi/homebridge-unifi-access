@@ -135,6 +135,8 @@ export class AccessEvents extends EventEmitter {
 
     // Listen for any messages coming in from our listener. We route events to the appropriate handlers based on the type of event that comes across.
     this.udaApi.on("message", this.eventsHandler = (packet: AccessEventPacket): void => {
+      // Debug log all events
+      this.log.debug("Received event: %s, data: %s", packet.event, JSON.stringify(packet.data));
 
       // Emit messages based on the event type.
       this.emit(packet.event, packet);
